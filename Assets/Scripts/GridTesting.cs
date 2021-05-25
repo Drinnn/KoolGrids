@@ -2,19 +2,15 @@ using UnityEngine;
 using CodeMonkey.Utils;
 
 public class GridTesting : MonoBehaviour {
-    private Grid _grid;
+    private Grid<bool> _grid;
 
     private void Start() {
-        _grid = new Grid(4, 2, 10f, new Vector3(0, 0));
+        _grid = new Grid<bool>(4, 2, 10f, Vector3.zero, (Grid<bool> g, int x, int y) => new bool(), true);
     }
 
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            _grid.SetValue(UtilsClass.GetMouseWorldPosition(), 56);
-        }
-
-        if (Input.GetMouseButtonDown(1)) {
-            Debug.Log(_grid.GetValue(UtilsClass.GetMouseWorldPosition()));
+            _grid.SetGridObject(UtilsClass.GetMouseWorldPosition(), true);
         }
     }
 }
